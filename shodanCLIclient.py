@@ -24,25 +24,28 @@ print(Align(Panel.fit(logo, style="#950000", title="ShodanCLIclient", subtitle="
 console.print("PRESS ENTER TO CONTINUE", style="#7313F0", justify="center")
 input()
 console.print("ENTER YOU API KEY", style="#7313F0", justify="center")
-SHODAN_API_KEY = input("{$}->")
-
+#SHODAN_API_KEY = input("{$}->")
+SHODAN_API_KEY = "YEvVDMcRBeBnEmtZUBNQeQ4LxFqkmwbY"
 api = shodan.Shodan(SHODAN_API_KEY)
 console.print("enter a search query".upper(), style="#15D200", justify="center")
 query = input()
+def search_result():
+	try:
+	        # Search Shodan
+	        results = api.search(query)
+	        if results['total'] > 0:
 
-try:
-        # Search Shodan
-        results = api.search(query)
-        if results['total'] > 0:
+	        	console.print('[+]Results found: {}'.format(results['total']), style="#15D200")
+	        else:
+	        	console.print('[-]No result found, try changing your search query')
+	        migga = input("")
+	        for result in results['matches']:
+	                print('IP: {}'.format(result['ip_str']))
+	                print(result['data'])
+	                print('')
+	                sleep(0.1)
+	except shodan.APIError:
+	        print('Error')
 
-        	console.print('[+]Results found: {}'.format(results['total']), style="light green")
-        esle:
-        	console.print('[-]No result found, try changing your search query')
-        migga = input("")
-        for result in results['matches']:
-                print('IP: {}'.format(result['ip_str']))
-                print(result['data'])
-                print('')
-                sleep(0.1)
-except shodan.APIError:
-        print('Error')
+while True:
+	search_result()
