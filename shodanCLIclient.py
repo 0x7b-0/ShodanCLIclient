@@ -24,8 +24,8 @@ print(Align(Panel.fit(logo, style="#950000", title="ShodanCLIclient", subtitle="
 console.print("PRESS ENTER TO CONTINUE", style="#7313F0", justify="center")
 input()
 console.print("ENTER YOU API KEY", style="#7313F0", justify="center")
-#SHODAN_API_KEY = input("{$}->")
-SHODAN_API_KEY = "YEvVDMcRBeBnEmtZUBNQeQ4LxFqkmwbY"
+SHODAN_API_KEY = input("{$}->")
+
 api = shodan.Shodan(SHODAN_API_KEY)
 console.print("enter a search query".upper(), style="#15D200", justify="center")
 query = input()
